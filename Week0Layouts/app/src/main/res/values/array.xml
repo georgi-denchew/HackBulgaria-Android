@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<array name="flag_colors">
+    <item>#00f</item>
+    <item>#f00</item>
+    <item>#0f0</item>
+    <item>#fff</item>
+    <item>#000</item>
+</array>
+
+</resources>

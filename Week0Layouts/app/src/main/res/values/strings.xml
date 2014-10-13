@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Week0Layouts</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="message_text">Enter a Message</string>
+    <string name="send_button">Send</string>
+    <string name="user">User:</string>
+    <string name="lorem_ipsum"> Cras vestibulum est in maximus tincidunt. Pellentesque hendrerit lacinia ex, eget iaculis magna posuere eget. Proin odio turpis, facilisis eget nisi quis, porta faucibus nisl. Suspendisse ultricies, leo ac lobortis iaculis, urna magna sagittis odio, quis porta metus tortor ut augue. Duis volutpat ac massa molestie cursus.</string>
+
+</resources>

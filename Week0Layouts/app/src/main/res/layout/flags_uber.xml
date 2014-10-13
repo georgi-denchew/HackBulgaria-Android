@@ -1,0 +1,65 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ccc"
+    tools:context=".MyActivity">
+
+
+    <ImageView
+        android:id="@+id/image_view"
+        android:layout_alignParentRight="true"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/portait_image"
+        />
+
+
+    <LinearLayout
+        android:id="@+id/nested_linear_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/image_view"
+        android:background="#f00"
+        android:layout_alignBottom="@id/image_view"
+        >
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_toLeftOf="@id/image_view"
+        android:background="#f00"
+        android:gravity="center_vertical"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:text="AAAA"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+
+
+        <TextView
+            android:text="BBBB"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="CCCC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <TextView
+        android:background="#0f0"
+        android:layout_below="@id/nested_linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:text="@string/lorem_ipsum"
+        android:overScrollMode="never"
+        android:layout_toLeftOf="@id/image_view"/>
+</LinearLayout>
+</RelativeLayout>
