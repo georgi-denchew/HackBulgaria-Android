@@ -45,18 +45,6 @@ public class MainActivity extends Activity {
 
         mCounterTextView = (TextView) findViewById(R.id.counter_text_view);
 
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-        int width = size.x;
-        int height = size.y;
-
-        int imageViewHeight = mImageView.getHeight();
-
-        int textViewHeight = height / 2 + imageViewHeight / 2 + 10;
-        mCounterTextView.setY(500);
-        
-
         updateCurrentIndexTextView();
     }
 
