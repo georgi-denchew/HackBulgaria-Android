@@ -1,0 +1,45 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/brush_menu"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="chooseBrush"
+            android:layout_weight="1"
+            android:background="@drawable/button_state"
+            android:src="@drawable/apple"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_state"
+            android:onClick="chooseBrush"
+            android:src="@drawable/beats"/>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/button_state"
+            android:onClick="chooseBrush"
+            android:src="@drawable/twitter"/>
+
+    </LinearLayout>
+
+
+    <com.example.georgi.week2drawablebrush.MyCustomView
+        android:id="@+id/my_custom_view"
+        android:layout_below="@id/brush_menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</RelativeLayout>

@@ -1,0 +1,10 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <color name="green">#559955</color>
+    <color name="green_light">#99cc99</color>
+    <color name="red">#995555</color>
+    <color name="red_light">#cc9999</color>
+
+    <drawable name="green">@color/green</drawable>
+    <drawable name="red">@color/red</drawable>
+</resources>
