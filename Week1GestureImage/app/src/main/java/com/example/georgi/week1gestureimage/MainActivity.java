@@ -109,22 +109,27 @@ public class MainActivity extends Activity {
                     float translationX = mImageView.getTranslationX();
                     float translationY = mImageView.getTranslationY();
 
-                    if (!isTwoFingerGesture) {
-                        float newXTranslation = translationX + currentX - firstPoint.x;
-                        float newYTranslation = translationY + currentY - firstPoint.y;
-
+//                    if (!isTwoFingerGesture) {
+//                        float newXTranslation = translationX + currentX - firstPoint.x;
+//                        float newYTranslation = translationY + currentY - firstPoint.y;
+//
 //                        Log.w("X Translation: ", translationX + "");
-//                        Log.w("Y: ", mImageView.getY() + "");
+////                        Log.w("Y: ", mImageView.getY() + "");
 //                        Log.w("Y Translation: ", newYTranslation + "");
+//                        mImageView.setTranslationX(newXTranslation);
+//                        mImageView.setTranslationY(newYTranslation);
+//                    }
 
-                        mImageView.setTranslationX(newXTranslation);
-                        mImageView.setTranslationY(newYTranslation);
-                    } else {
+//                    else {
                         firstPoint = new PointF(event.getX(INDEX_FIRST_POINTER), event.getY(INDEX_FIRST_POINTER));
                         secondPoint = new PointF(event.getX(INDEX_SECOND_POINTER), event.getY(INDEX_SECOND_POINTER));
 
                         secondMiddlePoint = calculateMiddlePoint(firstPoint.x, secondPoint.x, firstPoint.y, secondPoint.y);
 
+                        if (firstMiddlePoint.x == 0 && firstMiddlePoint.y == 0)
+                        {
+                            throw new RuntimeException();
+                        }
                         mImageView.setTranslationX(translationX + secondMiddlePoint.x - firstMiddlePoint.x);
                         mImageView.setTranslationY(translationY + secondMiddlePoint.y - firstMiddlePoint.y);
 
@@ -134,14 +139,15 @@ public class MainActivity extends Activity {
 
                         float currentScale = mImageView.getScaleX();
 
-                        mImageView.setScaleX(currentScale * scaleBy);
-                        mImageView.setScaleY(currentScale * scaleBy);
+//                        mImageView.setScaleX(currentScale * scaleBy);
+//                        mImageView.setScaleY(currentScale * scaleBy);
 
                         PointF secondVector = new PointF(secondPoint.x - firstPoint.x, secondPoint.y - firstPoint.y);
 
                         atan2 = Math.atan2(secondVector.y, secondVector.x);
 
                         float deltaAngleRadians = (float) (atan2 - atan1);
+//                          Log.w("Delta Angle:", deltaAngleRadians + "");
 
                         float deltaAngleDegrees = (float) Math.toDegrees(deltaAngleRadians);
 
@@ -151,7 +157,7 @@ public class MainActivity extends Activity {
 
                         float currentAngle = mImageView.getRotation();
                         mImageView.setRotation(currentAngle + deltaAngleDegrees);
-                    }
+//                    }
 
                     break;
                 }

@@ -12,7 +12,6 @@ import android.graphics.RectF;
  */
 public class Obstacle implements GameObject {
 
-
     public static final int VERTICAL_DISTANCE_BETWEEN_OBSTACLES_PARAMETER = 4;
     private final int birdHeight;
     private PointF position;

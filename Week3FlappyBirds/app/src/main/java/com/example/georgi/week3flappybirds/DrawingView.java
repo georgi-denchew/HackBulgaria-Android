@@ -7,6 +7,7 @@ import android.graphics.Point;
 import android.graphics.RectF;
 import android.os.SystemClock;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Display;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class DrawingView extends ImageView {
     private int screenHeight;
     private Bird bird;
     private double speed = 1;
+    private boolean isGameOver;
 
     public void distributeClick() {
         for (GameObject gameObject : gameObjects) {
@@ -41,7 +43,6 @@ public class DrawingView extends ImageView {
         }
     }
 
-
     public static interface GameClockListener {
         public void onGameEvent(GameEvent gameEvent);
     }
@@ -49,8 +50,8 @@ public class DrawingView extends ImageView {
     public void subscribe(GameObject gameObject) {
         gameObjects.add(gameObject);
 
-        if (gameObject instanceof Bird){
-            this.bird =(Bird) gameObject;
+        if (gameObject instanceof Bird) {
+            this.bird = (Bird) gameObject;
         }
     }
 
@@ -70,15 +71,16 @@ public class DrawingView extends ImageView {
 
         this.speed += 0.0001f;
         for (GameObject gameObject : gameObjects) {
-            gameObject.update(screenWidth, screenHeight, (float)speed);
+            gameObject.update(screenWidth, screenHeight, (float) speed);
         }
     }
 
     private void checkForOutOfBounds() {
         boolean isGameOver = bird.getPosition().y + bird.getHeight() > screenHeight;
 
-        if (isGameOver){
-            reset();
+        if (isGameOver) {
+            handleCollisions();
+//            reset();
         }
     }
 
@@ -110,32 +112,42 @@ public class DrawingView extends ImageView {
         RectF birdRect = new RectF(bird.getPosition().x, bird.getPosition().y, bird.getPosition().x + bird.getWidth(), bird.getPosition().y + bird.getHeight());
 
         for (GameObject gameObject : gameObjects) {
-            if (gameObject instanceof Obstacle){
+            if (gameObject instanceof Obstacle) {
                 Obstacle obstacle = (Obstacle) gameObject;
                 boolean hasCollisions = birdRect.intersect(obstacle.getFirstRectangle()) || birdRect.intersect(obstacle.getSecondRectangle());
                 boolean isAboveObstacle = bird.getPosition().y < 0 && (obstacle.getFirstRectangle().left <= bird.getPosition().x && bird.getPosition().x <= obstacle.getFirstRectangle().right);
                 hasCollisions = hasCollisions || isAboveObstacle;
-                if (hasCollisions){
-                    collisionListener.handleCollision();
-                    reset();
+                if (hasCollisions) {
+                    handleCollisions();
+                    //reset();
                     break;
                 }
             }
         }
     }
 
+    private void handleCollisions() {
+        this.isGameOver = true;
+
+        long gameEndTime = SystemClock.uptimeMillis();
+        long gameScore = (gameEndTime - gameStartTime) / 1000;
+
+        Toast.makeText(getContext(), "Game Over! Score: " + gameScore, Toast.LENGTH_SHORT).show();
+
+        collisionListener.handleCollision(gameScore);
+    }
+
     private synchronized void reset() {
         long gameEndTime = SystemClock.uptimeMillis();
 
         long gameScore = (gameEndTime - gameStartTime) / 1000;
-        Toast.makeText(getContext(), "Game Over! Score: " + gameScore, Toast.LENGTH_SHORT).show();
         this.bird.getPosition().y = 0;
 
         Iterator<GameObject> iterator = gameObjects.iterator();
         while (iterator.hasNext()) {
 
             GameObject gameObject = iterator.next();
-            if (gameObject instanceof Obstacle){
+            if (gameObject instanceof Obstacle) {
                 iterator.remove();
             }
         }
@@ -147,5 +159,13 @@ public class DrawingView extends ImageView {
 
         this.gameStartTime = SystemClock.uptimeMillis();
         this.speed = 1;
+    }
+
+    public boolean isGameOver() {
+        return isGameOver;
+    }
+
+    public void setGameOver(boolean isGameOver) {
+        this.isGameOver = isGameOver;
     }
 }

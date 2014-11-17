@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.georgi.week3flappybirds.SubmitFragment"
+    android:gravity="center">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/username"
+        android:hint="@string/username" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/email"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/university"
+        android:orientation="vertical">
+
+        <RadioButton android:id="@+id/fmi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fmi"/>
+        <RadioButton android:id="@+id/tu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tu"
+            />
+        <RadioButton android:id="@+id/tues"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tues"
+            />
+        <RadioButton android:id="@+id/unwe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unwe"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/submit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="submit"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true" />
+</LinearLayout>

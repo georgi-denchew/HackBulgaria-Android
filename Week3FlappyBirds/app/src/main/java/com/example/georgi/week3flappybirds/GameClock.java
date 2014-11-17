@@ -24,8 +24,10 @@ public class GameClock {
     private class ClockRunnable implements Runnable {
         @Override
         public void run() {
-            onTimerTick();
-            handler.postDelayed(this, Settings.FRAMERATE_CONSTANT);
+            if (!rootView.isGameOver()) {
+                onTimerTick();
+                handler.postDelayed(this, Settings.FRAMERATE_CONSTANT);
+            }
         }
 
         private void onTimerTick() {

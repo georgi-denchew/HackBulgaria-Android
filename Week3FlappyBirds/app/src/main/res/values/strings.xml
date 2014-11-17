@@ -4,5 +4,12 @@
     <string name="app_name">Week3FlappyBirds</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="username">username</string>
+    <string name="email">email</string>
+    <string name="fmi">FMI</string>
+    <string name="tu">TU</string>
+    <string name="tues">TUES</string>
+    <string name="unwe">UNWE</string>
 
 </resources>
