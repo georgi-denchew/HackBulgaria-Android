@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Week5MultipleActivities</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="parameter">parameter</string>
+    <string name="dial">Dial</string>
+    <string name="browse">Browse</string>
+    <string name="setAlarm">Set Alarm</string>
+
+</resources>
