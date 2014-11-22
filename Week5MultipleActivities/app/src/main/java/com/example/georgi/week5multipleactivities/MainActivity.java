@@ -31,9 +31,9 @@ public class MainActivity extends Activity {
                 break;
             }
             case R.id.browse_button:{
-                patternString = "[a-z]+\\.[a-z]+(\\.[a-z])+";
+                patternString = "[a-z]+\\.[a-z]+\\.[a-z]+";
                 intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://" + parameter));
+                intent.setData(Uri.parse("http://" + parameter));
                 break;
             }
             case R.id.alarm_button:{
@@ -41,6 +41,9 @@ public class MainActivity extends Activity {
                 intent = new Intent(AlarmClock.ACTION_SET_ALARM);
                 intent.putExtra(AlarmClock.EXTRA_MESSAGE, "New Alarm");
                 String[] parts = parameter.split(":");
+                if (parts.length != 2) {
+                    break;
+                }
                 intent.putExtra(AlarmClock.EXTRA_HOUR, Integer.parseInt(parts[0]));
                 intent.putExtra(AlarmClock.EXTRA_MINUTES, Integer.parseInt(parts[1]));
                 break;
