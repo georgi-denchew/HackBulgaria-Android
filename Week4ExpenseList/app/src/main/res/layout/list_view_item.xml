@@ -1,0 +1,33 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:id="@+id/list_view_row"
+    android:layout_height="match_parent"
+    tools:context="com.example.georgi.expenselist.ExpensesListFragment"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:gravity="center"
+        android:layout_weight="1"
+        android:text="" />
+
+    <TextView
+        android:id="@+id/price"
+        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:gravity="center"
+        android:layout_weight="1" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:src="@drawable/delete_icon"
+
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content" />
+</LinearLayout>
