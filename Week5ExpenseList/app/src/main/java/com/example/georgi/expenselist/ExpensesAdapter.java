@@ -9,7 +9,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,19 +18,23 @@ import java.util.List;
  */
 public class ExpensesAdapter extends BaseAdapter {
 
-    private List<Expense> expenses;
+    public interface DeleteExpenseHandler{
+        public boolean deleteExpense(Expense expense);
+    }
 
-    private static final class ViewHolder{
+    private static final class ViewHolder {
         private TextView descriptionTextView;
         private TextView priceTextView;
         private ImageView deleteImageView;
     }
 
-    public ExpensesAdapter() {
-        this.expenses = new ArrayList<Expense>();
-        this.expenses.add(new Expense("internet", 10));
-        this.expenses.add(new Expense("phone", 15));
-        this.expenses.add(new Expense("rent", 40));
+    private DeleteExpenseHandler deleteExpenseHandler;
+
+    private List<Expense> expenses;
+
+    public ExpensesAdapter(DeleteExpenseHandler deleteExpenseHandler, List<Expense> expenses) {
+        this.deleteExpenseHandler = deleteExpenseHandler;
+        this.expenses = expenses;
     }
 
     @Override
@@ -49,12 +52,13 @@ public class ExpensesAdapter extends BaseAdapter {
         return position;
     }
 
-    private void remove(int position){
-        this.expenses.remove(position);
+    public void remove(Expense expense) {
+
+        this.expenses.remove(expense);
         notifyDataSetChanged();
     }
 
-    public void add(Expense expense){
+    public void add(Expense expense) {
         this.expenses.add(0, expense);
         notifyDataSetChanged();
     }
@@ -67,7 +71,8 @@ public class ExpensesAdapter extends BaseAdapter {
         if (convertView != null) {
             layout = (LinearLayout) convertView;
         } else {
-            layout = (LinearLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_item, parent, false);
+            layout = (LinearLayout)
+                    LayoutInflater.from(parent.getContext()).inflate(R.layout.list_view_item, parent, false);
 
             TextView description = (TextView) layout.findViewById(R.id.description);
             TextView price = (TextView) layout.findViewById(R.id.price);
@@ -78,7 +83,6 @@ public class ExpensesAdapter extends BaseAdapter {
             viewHolder.priceTextView = price;
             viewHolder.deleteImageView = imageView;
 
-            viewHolder.deleteImageView.setTag(position);
             layout.setTag(viewHolder);
 
             viewHolder.deleteImageView.setOnClickListener(new View.OnClickListener() {
@@ -88,8 +92,9 @@ public class ExpensesAdapter extends BaseAdapter {
                     AlertDialog dialog = builder.setTitle("Confirm Delete for item at position " + v.getTag()).setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            int position = (Integer) v.getTag();
-                            ExpensesAdapter.this.remove(position);
+                            Expense expense = (Expense) v.getTag();
+
+                            ExpensesAdapter.this.deleteExpenseHandler.deleteExpense(expense);
                         }
                     }).setNegativeButton("Cancel", null).create();
 
@@ -101,7 +106,9 @@ public class ExpensesAdapter extends BaseAdapter {
         Expense expense = expenses.get(position);
         ViewHolder holder = (ViewHolder) layout.getTag();
         holder.descriptionTextView.setText(expense.getDescription());
-        holder.priceTextView.setText(expense.getPrice().toString());
+        holder.deleteImageView.setTag(expense);
+
+        holder.priceTextView.setText(expense.getPrice() + "");
 
         return layout;
     }

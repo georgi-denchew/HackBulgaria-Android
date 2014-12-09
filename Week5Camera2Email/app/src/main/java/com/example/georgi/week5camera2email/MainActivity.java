@@ -50,7 +50,7 @@ public class MainActivity extends Activity {
                         Uri.fromFile(photoFile));
                 startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
             }
-        }
+        }                                                                      
     }
 
     @Override
