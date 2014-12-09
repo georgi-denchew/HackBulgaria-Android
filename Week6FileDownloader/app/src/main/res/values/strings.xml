@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">DownloadManager</string>
+    <string name="action_settings">Settings</string>
+    <string name="diablo">Diablo</string>
+    <string name="penny">Penny</string>
+    <string name="parking">Parking</string>
+    <string name="obicham">Obicham</string>
+</resources>
